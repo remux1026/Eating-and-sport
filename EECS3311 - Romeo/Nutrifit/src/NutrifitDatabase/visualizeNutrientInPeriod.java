@@ -36,6 +36,14 @@ public class visualizeNutrientInPeriod {
 	
 	public static Map<String, Double> visualizeNutrientInPeriod(IManageUserData user,String startDate,String endDate)throws Exception {
 		int days=(int) daysBetween(startDate, endDate);
+
+		LocalDate start = LocalDate.parse(startDate);
+	    LocalDate end = LocalDate.parse(endDate);
+
+	    // check if input is valid
+	    if (start.isAfter(end)) {
+	        throw new Exception("input dates invalid");
+	    }
 		
 		List<Map<String, String>> meals = user.getUserMeals();
 		//System.out.println("meals:"+meals);
